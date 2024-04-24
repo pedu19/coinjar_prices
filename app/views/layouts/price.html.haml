@@ -1,0 +1,42 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{charset: "utf-8"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %meta{content: "", name: "description"}/
+
+    %title= "#{ yield :title } | price"
+ 
+    = yield :css_head
+    = yield :js_head
+    = csrf_meta_tag
+    = stylesheet_link_tag 'price', media: 'all', 'data-turbolinks-track': 'reload'
+   
+    = yield :header_file
+  %body
+    - if flash[:notice]
+      .content.clearfix.text-center
+        %div{ class: "alert alert-primary", role: "alert", style: "margin-bottom: 0rem;" }
+          = flash[:notice]
+    - if flash[:error]
+      .content.clearfix.text-center
+        %div{ class: "alert alert-danger", role: "alert", style: "margin-bottom: 0rem;" }
+          = flash[:error]
+
+    // - if price_signed_in?
+    .wrapper.reveal-side-navigation{style: "background-image: linear-gradient(125deg, #32325d 0%, #6162b5 100%) !important;"}
+      .wrapper-inner    
+        %header.header.header-relative.header-fixed-on-mobile.header-transparent{"data-bkg-threshold" => "100", "data-sticky-threshold" => "40"}
+          = render partial: "shared/header"
+    .content.clearfix
+      = yield   
+    // - else
+    //   = yield
+    -# = javascript_include_tag 'price', "data-turbolinks-suppress-warning": true
+    - content_for(:js_footer) do
+      :javascript
+        // JS Content here
+        
+    - content_for(:css_footer) do
+      // CSS Content here
+      

@@ -1,0 +1,43 @@
+.container.py-3
+  .row
+    .col-12.text-right
+      %a.btn.btn-sm.btn-outline-secondary{ href: prices_path }
+        List
+    .col-md-4
+      %h2 History
+  .table-responsive
+    %table.table.table-striped.table-sm
+      %thead
+        %tr
+          %th Symbol
+          %th Last
+          %th Bid
+          %th Ask
+          %th Change 24h
+          %th Current Time
+          %th Prev Close
+          %th Session
+          %th Status
+          %th Transition Time
+          %th Volume
+          %th Volume 24h
+      %tbody
+        - @prices.each do |price|
+          %tr
+          %td= price.symbol
+          %th= price.last
+          %th= price.bid
+          %td= price.ask
+          %th= price.change_24h
+          %th= price.current_time
+          %th= price.prev_close
+          %td= price.session
+          %th= price.status
+          %th= price.transition_time
+          %th= price.volume
+          %th= price.volume_24h
+          
+          %td
+            = link_to "Edit", edit_price_path(price)
+            &nbsp;|&nbsp;
+            = link_to "Show", price_path(price)

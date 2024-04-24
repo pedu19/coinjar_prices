@@ -1,0 +1,18 @@
+= content_for(:title, "prices")
+
+.container
+  .row.mt-3.mb-3
+    .col-12.text-right
+      %a.btn.btn-sm.btn-outline-secondary{ href: prices_path }
+        List
+      
+  .row.mt-3.mb-3
+    .col-12
+
+      %h2 New price
+
+      = form_for(@price, as: :price, url: prices_path(@price), html: { method: :post, multipart: true }) do |f|
+        = render partial: "form", locals: { f: f }
+
+        .form-group
+          = f.submit "Capture", class: "btn btn-primary"

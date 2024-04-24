@@ -1,0 +1,16 @@
+.container
+  .row.mt-3.mb-3
+    .col-12.text-right
+      %a.btn.btn-sm.btn-outline-secondary{ href: prices_path }
+        List
+      %a.btn.btn-sm.btn-outline-secondary{ href: price_path(@price) }
+        View        
+  .row.mt-3.mb-3
+    .col-12
+      %h2= "#{@price.symbol }- #{@price.id}"
+
+      = form_for(@price, as: :price, url: price_path(@price), html: { multipart: true }) do |f|
+        = render partial: "form", locals: { f: f }
+
+        .form-group
+          = f.submit "Update", class: "btn btn-primary"

@@ -1,0 +1,49 @@
+.container
+  .row.mt-3.mb-3
+    .col-12.text-right
+      %a.btn.btn-sm.btn-outline-secondary{ href: prices_path }
+        List
+      %a.btn.btn-sm.btn-outline-secondary{ href: edit_price_path(@price) }
+        Edit
+        
+      = link_to "Delete", price_path(@price), method: :delete, class: "btn btn-sm btn-outline-secondary"
+
+    .col-12
+      %h2= @price.symbol
+
+      .table-responsive
+        %table.table.table-striped.table-sm
+
+          %tr
+            %th Last
+            %td= @price.last
+          %tr        
+            %th Bid
+            %td= @price.bid
+          %tr
+            %th Ask
+            %td= @price.ask  
+          %tr
+            %th Change 24h
+            %td= @price.change_24h
+          %tr
+            %th Current Time
+            %td= @price.current_time
+          %tr      
+            %th Prev close
+            %td= @price.prev_close
+          %tr        
+            %th Session
+            %td= @price.session
+          %tr
+            %th Status
+            %td= @price.status  
+          %tr
+            %th Transition Time
+            %td= @price.transition_time
+          %tr
+            %th Volume
+            %td= @price.volume
+          %tr      
+            %th Volume 24h
+            %td= @price.volume_24h
